@@ -39,7 +39,7 @@ class StepPainterWidget extends StatelessWidget {
                 ),
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(
@@ -97,10 +97,10 @@ class RootPainter extends CustomPainter {
     double distance = end.dy - start.dy;
     double currentDistance = 0.0;
 
-    double drawingDistance = distance - startPadding - endPadding; // Total distance for drawing dashes
-    if (drawingDistance <= 0) return; // Do not draw if there's no space after adding paddings
+    double drawingDistance = distance - startPadding - endPadding;
+    if (drawingDistance <= 0) return;
 
-    currentDistance += startPadding; // Start after the start padding
+    currentDistance += startPadding;
 
     while (currentDistance + dashWidth < drawingDistance) {
       final double x = start.dx;
