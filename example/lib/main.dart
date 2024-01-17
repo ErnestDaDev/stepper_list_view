@@ -10,7 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -99,8 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: const EdgeInsets.only(
                 top: 20,
               ),
-              padding: const EdgeInsets.all(
-                15,
+              padding: const EdgeInsets.only(
+                bottom: 50,
               ),
               child: ListTile(
                 contentPadding: const EdgeInsets.all(7),
@@ -251,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           stepperThemeData: StepperThemeData(
             lineColor: theme.primaryColor,
-            lineWidth: 5,
+            lineWidth: 1,
           ),
           physics: const BouncingScrollPhysics(),
         ),

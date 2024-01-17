@@ -12,22 +12,15 @@ class StepPainterWidget extends StatelessWidget {
     required this.stepperAvatar,
     required this.stepperContent,
     required this.isLast,
-    Key? key,
+    super.key,
     required this.stepperWidget,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 5,
-            right: 5,
-          ),
-          child: stepperWidget,
-        ),
         Expanded(
           child: CustomPaint(
             painter: RootPainter(
@@ -45,7 +38,19 @@ class StepPainterWidget extends StatelessWidget {
                   width: 4,
                 ),
                 Expanded(
-                  child: stepperContent,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 5,
+                          right: 5,
+                        ),
+                        child: stepperWidget,
+                      ),
+                      stepperContent,
+                    ],
+                  ),
                 )
               ],
             ),
@@ -82,11 +87,26 @@ class RootPainter extends CustomPainter {
       dx *= -1;
     }
     if (!isLast) {
-      canvas.drawLine(
-        Offset(dx, avatar!.height),
-        Offset(dx, size.height),
-        _paint,
-      );
+      _drawDashedLine(canvas, Offset(dx, avatar!.height), Offset(dx, size.height));
+    }
+  }
+
+  void _drawDashedLine(Canvas canvas, Offset start, Offset end, {double startPadding = 20.0, double endPadding = 00.0}) {
+    const double dashWidth = 5.0;
+    const double dashSpace = 5.0;
+    double distance = end.dy - start.dy;
+    double currentDistance = 0.0;
+
+    double drawingDistance = distance - startPadding - endPadding; // Total distance for drawing dashes
+    if (drawingDistance <= 0) return; // Do not draw if there's no space after adding paddings
+
+    currentDistance += startPadding; // Start after the start padding
+
+    while (currentDistance + dashWidth < drawingDistance) {
+      final double x = start.dx;
+      final double y = start.dy + currentDistance;
+      canvas.drawLine(Offset(x, y), Offset(x, y + dashWidth), _paint);
+      currentDistance += dashWidth + dashSpace;
     }
   }
 
