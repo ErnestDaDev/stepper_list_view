@@ -12,6 +12,7 @@ class StepperListView extends StatelessWidget {
     required this.stepContentWidget,
     this.stepperThemeData,
     this.controller,
+    this.padding,
     this.physics,
     this.shrinkWrap,
     this.addAutomaticKeepAlive,
