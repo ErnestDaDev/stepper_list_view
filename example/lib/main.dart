@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'occupation': 'Flutter Development',
               'mobileNumber': '7318459902',
               'email': 'subhashchandras7318@gmail.com',
-              'born_date': '12\nAug',
+              'born_date': '12 Aug',
               "contact_list": {
                 "LinkedIn": "https://www.linkedin.com/in/subhashcs/",
                 "Portfolio": "https://subhashdev121.github.io/subhash/#/",
@@ -81,14 +81,14 @@ class _MyHomePageState extends State<MyHomePage> {
           stepWidget: (_, data) {
             final stepData = data as StepperItemData;
             return PreferredSize(
-              preferredSize: const Size.fromWidth(30),
+              preferredSize: const Size.fromWidth(double.infinity),
               child: Text(
                 stepData.content['born_date'] ?? '',
                 style: TextStyle(
                   color: theme.primaryColor,
                   fontSize: 13,
                 ),
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
               ),
             );
           },

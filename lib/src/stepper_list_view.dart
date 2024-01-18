@@ -30,6 +30,7 @@ class StepperListView extends StatelessWidget {
   final ScrollController? controller;
   final ScrollPhysics? physics;
   final bool? shrinkWrap;
+  final EdgeInsetsGeometry? padding;
   final bool? addAutomaticKeepAlive;
   final bool? addSemanticIndexes;
   final bool? reverse;
@@ -42,6 +43,7 @@ class StepperListView extends StatelessWidget {
       physics: physics,
       shrinkWrap: shrinkWrap ?? false,
       itemCount: stepperData.length,
+      padding: padding,
       addAutomaticKeepAlives: addAutomaticKeepAlive ?? true,
       addSemanticIndexes: addSemanticIndexes ?? true,
       reverse: reverse ?? false,
@@ -52,7 +54,7 @@ class StepperListView extends StatelessWidget {
           stepperWidgetBuilder: (_, data) {
             return stepWidget != null
                 ? PreferredSize(
-                    preferredSize: stepSize ?? const Size.fromWidth(20),
+                    preferredSize: stepSize ?? const Size.fromWidth(double.infinity),
                     child: stepWidget!(_, data),
                   )
                 : const PreferredSize(
